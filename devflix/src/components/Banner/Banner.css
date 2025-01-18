@@ -1,0 +1,46 @@
+.bannerContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  height: 500px;
+  width: 100%;
+  border-radius: 10p;
+  box-shadow: 
+  inset 0 10px 15px -5px rgba(223, 0, 86, 0.5), /* Sombra interna em cima */
+  inset 0 -10px 15px -5px rgba(223, 0, 86, 0.5); /* Sombra interna embaixo */
+  background-color: #000;
+  color: #fff;
+}
+
+.bannerContainer .bannerContainerItens {
+  width: 1140px;
+}
+.bannerContainer .bannerContainerItens .titulo {
+  font-size: 40px;
+  text-align: center;
+  background-color: #c76e09;
+  width: 250px;
+  border-radius: 10px;
+  color: #fff;
+}
+
+.bannerContainer .bannerContainerItens .subtitulo {
+  font-size: 25px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  font-weight: 400;
+}
+
+.bannerContainer .bannerContainerItens .descricao {
+  font-size: 16px;
+  text-align: justify;
+  width: 90%;
+}
+
+
+.bannerContainer video{
+  width: 700px;
+  height: 300px;
+  border-radius: 10px;
+}

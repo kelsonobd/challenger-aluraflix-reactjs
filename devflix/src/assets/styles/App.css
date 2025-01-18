@@ -1,0 +1,79 @@
+
+
+  /* Sessoes iguais */
+  .sectionsIguais{
+        padding: 20px 20px;
+        background-color: #000;
+      
+       
+  }
+   .tituloPequeno {
+    font-size: 25px;
+    text-align: center;
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    padding-top: 10px;
+    color: #fff;
+    margin-bottom: 15px;
+  } 
+
+/* Container principal do carrossel */
+.carousel-container {
+    display: flex; /* Alinha os itens horizontalmente */
+    gap: 16px; /* Espaçamento entre os itens */
+    overflow-x: scroll; /* Habilita rolagem horizontal */
+    scroll-snap-type: x mandatory; /* Snapping suave */
+    padding: 7px 0px; /* Espaçamento interno do carrossel */
+    background-color: #000000; /* Fundo claro */
+    
+  }
+  
+  /* Itens do carrossel */
+  .video-item {
+    flex: 0 0 300px; /* Cada item ocupa 300px de largura */
+    background-color: #000000; /* Fundo branco */
+    border-radius: 8px; /* Bordas arredondadas */
+    /* Sombra laranja */
+    overflow: hidden; /* Garante que o conteúdo fique dentro dos limites */
+    scroll-snap-align: start; /* Alinha os itens ao rolar */
+  }
+  
+  /* Vídeos */
+  .video {
+    width: 100%; /* O vídeo ocupa toda a largura do item */
+    height: auto; /* Mantém a proporção do vídeo */
+    display: block; /* Remove espaçamento indesejado */
+  }
+  
+  /* Botões */
+  .button-container {
+    display: flex;
+    justify-content: space-around; /* Distribui os botões uniformemente */
+    padding: 10px;
+  }
+  
+  .button {
+    height: 30px;
+    width: 100px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  
+  
+  /* Ocultar barra de rolagem */
+  .carousel-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .carousel-container {
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+  }
+  

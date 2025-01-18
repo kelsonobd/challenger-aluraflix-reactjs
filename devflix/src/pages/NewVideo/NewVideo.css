@@ -1,0 +1,108 @@
+.containerCadastro {
+    padding: 20px;
+    background-color: #000;
+}
+.titulo, .descricaoTitulo {
+text-align: center;
+}
+
+.containerFormulario{
+   display: flex;
+   flex-direction: column;
+}
+
+/* Container principal */
+.form-container {
+    max-width: 700px;
+    height: 500px;
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #000;
+    color: #fff;
+    
+    border-radius: 8px;
+  }
+  
+  .form-container h2 {
+    margin-bottom: 20px;
+    padding: 20px;
+    border-bottom: 1px solid #df0056;
+    border-top: 1px solid #df0056;
+  }
+  
+  /* Estilo geral do formulário */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Linhas do formulário */
+  .form-row {
+    display: flex;
+    gap: 20px;
+  }
+  
+  /* Grupo individual de campos */
+  .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Labels */
+  label {
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+  
+  /* Inputs, selects e textarea */
+  input, select, textarea {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #df0056;
+    border-radius: 4px;
+    background-color: #222;
+    color: #fff;
+  }
+  
+  textarea {
+    resize: none;
+  }
+  
+  /* Botões */
+  .form-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-transform: uppercase;
+  }
+  
+  button[type="submit"] {
+    background-color: #df0056;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #9e0540;
+  }
+  
+  button[type="reset"] {
+    background-color: #444;
+  }
+  
+  button[type="reset"]:hover {
+    background-color: #666;
+  }
+  

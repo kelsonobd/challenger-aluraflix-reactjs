@@ -1,0 +1,19 @@
+
+.btnDeletar{
+  background-color: #9c0404;
+}
+
+.btnDeletar:hover {
+  background-color: #d10303; /* Cor mais escura no hover */
+}
+
+
+.btnEditar {
+  background-color: #023802;
+}
+.btnEditar:hover {
+  background-color: #026502; /* Cor mais escura no hover */
+}
+
+
+

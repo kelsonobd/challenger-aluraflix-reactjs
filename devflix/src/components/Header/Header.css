@@ -1,0 +1,34 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    height: 80px;
+    border: 1px solid #df0056;
+  }
+  
+  .logoHeader {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    color: #df0056;
+    font-weight: 600;
+   
+  }
+  
+  .header-button {
+    background-color: #df0056;
+    border: none;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 10px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #fff;
+  }
+  
+  .header-button:hover {
+    background-color: #9e0540;
+  }
