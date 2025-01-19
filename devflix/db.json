@@ -97,30 +97,6 @@
       "description": "Implementando autenticação JWT."
     },
     {
-      "id": "13",
-      "title": "GraphQL Basics",
-      "category": "back-end",
-      "imageLink": "https://via.placeholder.com/800x400",
-      "videoLink": "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      "description": "Criação de APIs GraphQL."
-    },
-    {
-      "id": "14",
-      "title": "RESTful APIs",
-      "category": "back-end",
-      "imageLink": "https://via.placeholder.com/800x400",
-      "videoLink": "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      "description": "Desenvolvimento de APIs RESTful."
-    },
-    {
-      "id": "15",
-      "title": "Docker for Developers",
-      "category": "back-end",
-      "imageLink": "https://via.placeholder.com/800x400",
-      "videoLink": "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      "description": "Introdução ao Docker para devs."
-    },
-    {
       "id": "16",
       "title": "Redis Essentials",
       "category": "back-end",
