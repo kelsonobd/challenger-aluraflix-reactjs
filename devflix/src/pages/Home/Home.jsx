@@ -40,7 +40,7 @@ const Home = () => {
       ? allVideos[allVideos.length - 1]
       : {
           title: "Bem-vindo ao Devflix",
-          category: "Sem video",
+          category: "Sem",
           description: "Adicione novos vídeos para começar a personalizar o seu Devflix!",
           src: "https://via.placeholder.com/800x400",
           imageLink: "https://via.placeholder.com/800x400",
@@ -56,10 +56,42 @@ const Home = () => {
     setCurrentVideo(null);
   };
 
-  const handleSave = (updatedVideo) => {
-    console.log("Vídeo atualizado:", updatedVideo);
-    setIsModalOpen(false);
-    setCurrentVideo(null);
+  const handleSave = async (updatedVideo) => {
+    try {
+      const response = await fetch(`http://localhost:5001/videos/${updatedVideo.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedVideo),
+      });
+
+      if (!response.ok) throw new Error("Erro ao salvar vídeo");
+
+      // Atualizar localmente o estado
+      setFrontVideos((prev) =>
+        prev.filter((video) => video.id !== updatedVideo.id)
+      );
+      setBackVideos((prev) =>
+        prev.filter((video) => video.id !== updatedVideo.id)
+      );
+      setMobileVideos((prev) =>
+        prev.filter((video) => video.id !== updatedVideo.id)
+      );
+
+      if (updatedVideo.category === "front-end") {
+        setFrontVideos((prev) => [...prev, updatedVideo]);
+      } else if (updatedVideo.category === "back-end") {
+        setBackVideos((prev) => [...prev, updatedVideo]);
+      } else if (updatedVideo.category === "mobile") {
+        setMobileVideos((prev) => [...prev, updatedVideo]);
+      }
+
+      setIsModalOpen(false);
+      setCurrentVideo(null);
+    } catch (error) {
+      console.error("Erro ao salvar vídeo:", error);
+    }
   };
 
   const handleDelete = async (videoId) => {

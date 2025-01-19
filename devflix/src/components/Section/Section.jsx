@@ -8,9 +8,6 @@ const Section = ({ title, videos, color, onEdit, onDelete }) => {
   const [scrollLeft, setScrollLeft] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Duplica os vídeos para criar a ilusão de continuidade
-  const videosWithLoop = [...videos, ...videos];
-
   // Função para converter links do YouTube para embed
   const getEmbedLink = (url) => {
     if (url.includes("youtu.be")) {
@@ -22,16 +19,16 @@ const Section = ({ title, videos, color, onEdit, onDelete }) => {
     return url;
   };
 
-  // Movimento automático do carrossel
+  // Movimento automático do carrossel (somente com 8+ vídeos)
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || videos.length < 8) return;
 
     const interval = setInterval(() => {
       const track = trackRef.current;
       if (track) {
         const maxScroll = track.scrollWidth / 2;
         if (track.scrollLeft >= maxScroll) {
-          track.scrollLeft = 0;
+          track.scrollLeft = 0; // Reinicia o carrossel
         } else {
           track.scrollBy({ left: 300, behavior: "smooth" });
         }
@@ -39,7 +36,7 @@ const Section = ({ title, videos, color, onEdit, onDelete }) => {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [isPaused]);
+  }, [isPaused, videos.length]);
 
   // Funções de arrasto manual
   const handleMouseDown = (e) => {
@@ -48,7 +45,7 @@ const Section = ({ title, videos, color, onEdit, onDelete }) => {
     if (!e.target.closest(".video-item")) return;
 
     setIsDragging(true);
-    setIsPaused(true);
+    setIsPaused(true); // Pausa o movimento automático
     setStartX(e.pageX - track.offsetLeft);
     setScrollLeft(track.scrollLeft);
   };
@@ -65,6 +62,7 @@ const Section = ({ title, videos, color, onEdit, onDelete }) => {
   const handleMouseUpOrLeave = () => {
     setIsDragging(false);
 
+    // Retoma a animação automática após 3 segundos
     setTimeout(() => {
       setIsPaused(false);
     }, 3000);
@@ -92,7 +90,7 @@ const Section = ({ title, videos, color, onEdit, onDelete }) => {
         onTouchEnd={handleMouseUpOrLeave}
       >
         <div className="carousel-track">
-          {videosWithLoop.map((video, index) => (
+          {videos.map((video, index) => (
             <div key={index} className="video-item">
               {video.videoLink?.includes("youtube.com") || video.videoLink?.includes("youtu.be") ? (
                 <iframe

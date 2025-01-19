@@ -21,4 +21,10 @@
   margin-top: 10px;
 }
 
-  
+
+@media (max-width: 767px){
+.logoFooter{
+  font-size: 20px;
+}
+
+}

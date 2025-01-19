@@ -13,6 +13,20 @@ const Banner = ({ video }) => {
     return url; // Retorna o link original se não for do YouTube
   };
 
+  // Define a cor do background com base na categoria
+  const getBackgroundColor = (category) => {
+    switch (category?.toLowerCase()) {
+      case "front-end":
+        return "#c76e09"; // Amarelo
+      case "back-end":
+        return "#006100"; // Verde
+      case "mobile":
+        return "#1270c3"; // Azul
+      default:
+        return "#ffffff"; // Branco (categoria padrão)
+    }
+  };
+
   return (
     <section
       className="bannerContainer"
@@ -23,7 +37,12 @@ const Banner = ({ video }) => {
       }}
     >
       <div className="bannerContainerItens">
-        <h1 className="titulo">{video.category || "Categoria Padrão"}</h1>
+        <h1
+          className="titulo"
+          style={{ backgroundColor: getBackgroundColor(video.category) }} // Aplica o background dinâmico
+        >
+          {video.category || "Categoria Padrão"}
+        </h1>
         <h2 className="subtitulo">{video.title || "Título Padrão"}</h2>
         <p className="descricao">
           {video.description || "Descrição padrão do vídeo."}
@@ -31,16 +50,16 @@ const Banner = ({ video }) => {
       </div>
       {video.videoLink?.includes("youtube.com") || video.videoLink?.includes("youtu.be") ? (
         <iframe
-          className="video"
+          className="video "
           src={getEmbedLink(video.videoLink)}
           title={video.title}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
           style={{
-            width: "100%", // Largura do vídeo
-            height: "400px", // Altura ajustável do vídeo
-            borderRadius: "8px", // Opcional: arredonda as bordas
-            border: "none", // Remove a borda do iframe
+            width: "80%",
+            height: "50vh", // Ajusta a altura para metade da altura da viewport
+            maxHeight: "500px",
+            border: "none",
           }}
         ></iframe>
       ) : (
@@ -49,10 +68,9 @@ const Banner = ({ video }) => {
           className="video"
           poster={video.imageLink}
           style={{
-            width: "100%", // Largura do vídeo
-            height: "400px", // Altura ajustável do vídeo
-            objectFit: "cover", // Ajusta o vídeo para preencher o espaço proporcionalmente
-            borderRadius: "8px", // Opcional: arredonda as bordas
+            width: "100%",
+            height: "50vh", // Ajusta a altura para metade da altura da viewport
+            objectFit: "cover",
           }}
         >
           <source src={video.videoLink} type="video/mp4" />

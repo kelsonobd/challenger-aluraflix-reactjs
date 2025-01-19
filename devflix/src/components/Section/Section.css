@@ -10,6 +10,9 @@
   background-color: #d10303; /* Cor mais escura no hover */
 }
 
+.video {
+  border:2px solid #df0056 ;
+}
 
 .btnEditar {
   background-color: #023802;
@@ -44,4 +47,14 @@
 }
 
 
+/* CELULAR */
+@media (max-width: 767px) {
+.tituloPequeno{
+  font-size: 17px;
+  width: 110px;
+  height: 40px;
+}
 
+
+
+}

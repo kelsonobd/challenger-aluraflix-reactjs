@@ -36,3 +36,18 @@
   .header-button:hover {
     background-color: #9e0540;
   }
+
+
+
+  /* celular */ 
+  @media (max-width: 767px){
+    .header .logoHeader{
+      font-size: 20px;
+    }
+
+    .header-button{
+      font-size: 12px;
+    }
+
+
+  }
