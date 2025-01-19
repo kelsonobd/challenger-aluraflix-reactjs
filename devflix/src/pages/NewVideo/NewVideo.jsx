@@ -1,15 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 import "./NewVideo.css";
 
 const NewVideo = () => {
-  const handleSubmit = (e) => {
+  const [formData, setFormData] = useState({
+    title: "",
+    category: "",
+    imageLink: "",
+    videoLink: "",
+    description: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aqui você pode implementar a lógica para guardar o vídeo
-    console.log("Formulário enviado!");
+
+    try {
+      const response = await fetch("http://localhost:5001/videos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert("Vídeo adicionado com sucesso!");
+        setFormData({
+          title: "",
+          category: "",
+          imageLink: "",
+          videoLink: "",
+          description: "",
+        });
+      } else {
+        alert("Erro ao adicionar vídeo.");
+      }
+    } catch (error) {
+      console.error("Erro ao salvar o vídeo:", error);
+      alert("Erro ao conectar com o servidor.");
+    }
   };
 
   const handleReset = () => {
-    console.log("Formulário limpo!");
+    setFormData({
+      title: "",
+      category: "",
+      imageLink: "",
+      videoLink: "",
+      description: "",
+    });
   };
 
   return (
@@ -30,14 +76,22 @@ const NewVideo = () => {
                   type="text"
                   id="title"
                   name="title"
+                  value={formData.title}
+                  onChange={handleChange}
                   placeholder="Digite o título do vídeo"
                   required
                 />
               </div>
               <div className="form-group">
                 <label htmlFor="category">Categoria</label>
-                <select id="category" name="category" required>
-                  <option value="" disabled selected>
+                <select
+                  id="category"
+                  name="category"
+                  value={formData.category}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="" disabled>
                     Selecione uma categoria
                   </option>
                   <option value="front-end">Front-End</option>
@@ -50,21 +104,25 @@ const NewVideo = () => {
             {/* Linha para Link da Imagem e Vídeo */}
             <div className="form-row">
               <div className="form-group">
-                <label htmlFor="image-link">Imagem</label>
+                <label htmlFor="imageLink">Imagem</label>
                 <input
                   type="url"
-                  id="image-link"
-                  name="image-link"
+                  id="imageLink"
+                  name="imageLink"
+                  value={formData.imageLink}
+                  onChange={handleChange}
                   placeholder="Insira o link da imagem"
                   required
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="video-link">Vídeo</label>
+                <label htmlFor="videoLink">Vídeo</label>
                 <input
                   type="url"
-                  id="video-link"
-                  name="video-link"
+                  id="videoLink"
+                  name="videoLink"
+                  value={formData.videoLink}
+                  onChange={handleChange}
                   placeholder="Insira o link do vídeo"
                   required
                 />
@@ -77,6 +135,8 @@ const NewVideo = () => {
               <textarea
                 id="description"
                 name="description"
+                value={formData.description}
+                onChange={handleChange}
                 rows="4"
                 placeholder="Escreva uma breve descrição do vídeo"
                 required

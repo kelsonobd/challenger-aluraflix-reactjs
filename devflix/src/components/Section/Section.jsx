@@ -1,35 +1,137 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "./Section.css";
 
-const Section = ({ title, videos, color, onEdit }) => (
-  <section className={`sectionsIguais ${title.toLowerCase()}Container`}>
-    <h3
-      className={`tituloPequeno ${title.toLowerCase()}Titulo`}
-      style={{ backgroundColor: color }}
+const Section = ({ title, videos, color, onEdit, onDelete }) => {
+  const trackRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Duplica os vídeos para criar a ilusão de continuidade
+  const videosWithLoop = [...videos, ...videos];
+
+  // Função para converter links do YouTube para embed
+  const getEmbedLink = (url) => {
+    if (url.includes("youtu.be")) {
+      return url.replace("youtu.be/", "www.youtube.com/embed/");
+    }
+    if (url.includes("watch?v=")) {
+      return url.replace("watch?v=", "embed/");
+    }
+    return url;
+  };
+
+  // Movimento automático do carrossel
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      const track = trackRef.current;
+      if (track) {
+        const maxScroll = track.scrollWidth / 2;
+        if (track.scrollLeft >= maxScroll) {
+          track.scrollLeft = 0;
+        } else {
+          track.scrollBy({ left: 300, behavior: "smooth" });
+        }
+      }
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [isPaused]);
+
+  // Funções de arrasto manual
+  const handleMouseDown = (e) => {
+    const track = trackRef.current;
+
+    if (!e.target.closest(".video-item")) return;
+
+    setIsDragging(true);
+    setIsPaused(true);
+    setStartX(e.pageX - track.offsetLeft);
+    setScrollLeft(track.scrollLeft);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+
+    const track = trackRef.current;
+    const x = e.pageX - track.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    track.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleMouseUpOrLeave = () => {
+    setIsDragging(false);
+
+    setTimeout(() => {
+      setIsPaused(false);
+    }, 3000);
+  };
+
+  return (
+    <section
+      className={`sectionsIguais ${title.toLowerCase()}Container`}
+      onMouseLeave={handleMouseUpOrLeave}
     >
-      {title}
-    </h3>
-    <div className="carousel-container">
-      {videos.map((video, index) => (
-        <div key={index} className="video-item">
-          <video className="video" controls>
-            <source src={video.src} type="video/mp4" />
-            Seu navegador não suporta vídeos HTML5.
-          </video>
-          <div className="button-container">
-            <button className="button btnDeletar">DELETAR</button>
-            {/* Botão "EDITAR" chama a função onEdit com os dados do vídeo */}
-            <button
-              className="button btnEditar"
-              onClick={() => onEdit(video)}
-            >
-              EDITAR
-            </button>
-          </div>
+      <h3
+        className={`tituloPequeno ${title.toLowerCase()}Titulo`}
+        style={{ backgroundColor: color }}
+      >
+        {title}
+      </h3>
+      <div
+        className="carousel-container"
+        ref={trackRef}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUpOrLeave}
+        onTouchStart={(e) => handleMouseDown(e.touches[0])}
+        onTouchMove={(e) => handleMouseMove(e.touches[0])}
+        onTouchEnd={handleMouseUpOrLeave}
+      >
+        <div className="carousel-track">
+          {videosWithLoop.map((video, index) => (
+            <div key={index} className="video-item">
+              {video.videoLink?.includes("youtube.com") || video.videoLink?.includes("youtu.be") ? (
+                <iframe
+                  className="video"
+                  src={getEmbedLink(video.videoLink)}
+                  title={video.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              ) : (
+                <video
+                  className="video"
+                  controls
+                  poster={video.imageLink}
+                >
+                  <source src={video.videoLink} type="video/mp4" />
+                  Seu navegador não suporta vídeos HTML5.
+                </video>
+              )}
+              <div className="button-container">
+                <button
+                  className="button btnDeletar"
+                  onClick={() => onDelete(video.id)}
+                >
+                  DELETAR
+                </button>
+                <button
+                  className="button btnEditar"
+                  onClick={() => onEdit(video)}
+                >
+                  EDITAR
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
-  </section>
-);
+      </div>
+    </section>
+  );
+};
 
 export default Section;
