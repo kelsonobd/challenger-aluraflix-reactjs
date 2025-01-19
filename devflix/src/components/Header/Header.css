@@ -6,7 +6,8 @@
     color: #fff;
     padding: 10px 20px;
     height: 80px;
-    border: 1px solid #df0056;
+    border-bottom: 1px solid #df0056;
+    border-top: 1px solid #df0056;
   }
   
   .logoHeader {

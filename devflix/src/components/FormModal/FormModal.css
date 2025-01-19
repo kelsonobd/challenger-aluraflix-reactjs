@@ -1,0 +1,115 @@
+/* Estilização do fundo escuro */
+.modal-overlay {
+    position: fixed; /* Fixa no viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro com transparência */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Certifique-se de que está acima dos outros elementos */
+  }
+  
+  /* Container do formulário */
+  .containerFormModal {
+    width: 90%; /* Ocupa 90% da largura na tela menor */
+    max-width: 600px; /* Limita a largura máxima */
+    background-color: #22010e; /* Fundo preto */
+    color: #fff; /* Texto branco */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra */
+    border: 1px solid #df0056;
+    height: 650px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .tituloEbtn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .tituloFormModal{
+    text-align: center;
+    color:#df0056
+  }
+  .close-span{
+    width: 25px;
+    height: 25px;
+    border-radius: 50px;
+    background-color: ;
+    text-transform: uppercase;
+    border: 1px solid #df0056;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+
+  }
+
+  /* Estilização geral do formulário */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaço entre os campos */
+  }
+  
+  /* Estilo das labels */
+  label {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  /* Inputs, selects e textarea */
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #df0056;
+    border-radius: 4px;
+    background-color: #222; /* Fundo escuro */
+    color: #fff; /* Texto branco */
+    margin-top: 10px;
+  }
+  
+  textarea {
+    resize: none; /* Desabilita redimensionamento */
+  }
+  
+  /* Botões */
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+  }
+  
+  button[type="submit"] {
+    background-color: #df0056;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #9e0540;
+  }
+  
+  button[type="button"] {
+    background-color: #444;
+  }
+  
+  button[type="button"]:hover {
+    background-color: #666;
+  }
+  

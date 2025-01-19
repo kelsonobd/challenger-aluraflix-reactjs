@@ -50,7 +50,7 @@ const NewVideo = () => {
             {/* Linha para Link da Imagem e Vídeo */}
             <div className="form-row">
               <div className="form-group">
-                <label htmlFor="image-link">Link da Imagem de Capa:</label>
+                <label htmlFor="image-link">Imagem</label>
                 <input
                   type="url"
                   id="image-link"
@@ -60,7 +60,7 @@ const NewVideo = () => {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="video-link">Link do Vídeo</label>
+                <label htmlFor="video-link">Vídeo</label>
                 <input
                   type="url"
                   id="video-link"

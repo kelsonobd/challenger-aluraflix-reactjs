@@ -1,6 +1,9 @@
 
 .btnDeletar{
   background-color: #9c0404;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btnDeletar:hover {
@@ -10,6 +13,9 @@
 
 .btnEditar {
   background-color: #023802;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .btnEditar:hover {
   background-color: #026502; /* Cor mais escura no hover */
