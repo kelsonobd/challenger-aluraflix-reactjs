@@ -10,6 +10,8 @@ const NewVideo = () => {
     description: "",
   });
 
+  const [mockVideos, setMockVideos] = useState([]); // Para armazenar localmente como fallback
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -40,11 +42,25 @@ const NewVideo = () => {
           description: "",
         });
       } else {
-        alert("Erro ao adicionar vídeo.");
+        throw new Error("Erro ao adicionar vídeo no servidor.");
       }
     } catch (error) {
-      console.error("Erro ao salvar o vídeo:", error);
-      alert("Erro ao conectar com o servidor.");
+      console.error("Erro ao conectar com o servidor. Salvando localmente:", error);
+
+      // Adiciona o vídeo aos mocks
+      setMockVideos((prev) => [
+        ...prev,
+        { id: Date.now().toString(), ...formData },
+      ]);
+
+      alert("Servidor indisponível. Vídeo salvo localmente.");
+      setFormData({
+        title: "",
+        category: "",
+        imageLink: "",
+        videoLink: "",
+        description: "",
+      });
     }
   };
 
@@ -68,7 +84,6 @@ const NewVideo = () => {
         <div className="form-container">
           <h2 className="subtitulo">Criar Card</h2>
           <form onSubmit={handleSubmit}>
-            {/* Linha para Título e Categoria */}
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="title">Título</label>
@@ -101,7 +116,6 @@ const NewVideo = () => {
               </div>
             </div>
 
-            {/* Linha para Link da Imagem e Vídeo */}
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="imageLink">Imagem</label>
@@ -129,7 +143,6 @@ const NewVideo = () => {
               </div>
             </div>
 
-            {/* Campo para Descrição */}
             <div className="form-group">
               <label htmlFor="description">Descrição</label>
               <textarea
@@ -143,7 +156,6 @@ const NewVideo = () => {
               ></textarea>
             </div>
 
-            {/* Botões */}
             <div className="form-buttons">
               <button type="submit">Guardar</button>
               <button type="reset" onClick={handleReset}>
@@ -151,6 +163,19 @@ const NewVideo = () => {
               </button>
             </div>
           </form>
+
+          {mockVideos.length > 0 && (
+            <div className="mock-container">
+              <h3>Vídeos Salvos Localmente:</h3>
+              <ul>
+                {mockVideos.map((video) => (
+                  <li key={video.id}>
+                    {video.title} - {video.category}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </div>
