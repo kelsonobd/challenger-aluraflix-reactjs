@@ -136,13 +136,14 @@
       "imageLink": "https://via.placeholder.com/800x400?text=React+Native",
       "videoLink": "https://www.youtube.com/embed/0-S5a0eXPoc"
     },
+    
     {
-      "id": "mock23",
-      "title": "Animações no React Native",
-      "category": "mobile",
-      "description": "Aprenda a criar animações incríveis",
-      "imageLink": "https://via.placeholder.com/800x400?text=Animações+React+Native",
-      "videoLink": "https://www.youtube.com/embed/2V1E6Esa6Hg"
+      "id": "4039",
+      "title": "Front-end com Alura",
+      "category": "front-end",
+      "imageLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaDQpdT4s6FNmY1_ekNsQ5xkcNEQ_NYXRJjQ&s",
+      "videoLink": "https://youtu.be/6IuQUgeDPg0?si=VpGWAJFhD5fuTBXS",
+      "description": "Entenda o que é ReactJS e o que essa poderosa ferramenta é capaz de fazer!"
     }
   ]
 }
