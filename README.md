@@ -49,18 +49,26 @@ A aplicação permite adicionar, editar e remover vídeos categorizados por áre
 4. npm start
 5. Acesse o projeto no navegador: http://localhost:porta
 
-🎯 Objetivo do projeto
-O Devflix foi desenvolvido com os seguintes objetivos:
+## 🎯 Objetivo do projeto
 
-Consolidar conceitos de desenvolvimento front-end.
-Praticar integração com APIs simuladas.
-Desenvolver habilidades em React.js, CSS e JavaScript.
-Construir uma aplicação prática e funcional para o portfólio.
+O **Devflix** foi desenvolvido com os seguintes objetivos:
 
-🔗 Link para o projeto
-https://challenger-aluraflix-reactjs.vercel.app/
+- Consolidar conceitos de desenvolvimento front-end.
+- Praticar integração com APIs simuladas.
+- Desenvolver habilidades em **React.js**, **CSS** e **JavaScript**.
+- Construir uma aplicação prática e funcional para o portfólio.
 
-🎉 Agradecimentos
-Agradeço à Oracle e à Alura pela criação do programa Oracle Next Education (ONE), que proporcionou um ambiente de aprendizado incrível e prático.
+---
+
+## 🔗 Link para o projeto
+
+[Acesse o Devflix](https://challenger-aluraflix-reactjs.vercel.app/)
+
+---
+
+## 🎉 Agradecimentos
+
+Agradeço à **Oracle** e à **Alura** pela criação do programa **Oracle Next Education (ONE)**, que proporcionou um ambiente de aprendizado incrível e prático.
+
 A experiência foi enriquecedora e contribuiu significativamente para o meu desenvolvimento na área de tecnologia.
 
